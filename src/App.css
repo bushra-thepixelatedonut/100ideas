@@ -1,0 +1,56 @@
+.App {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 1rem
+}
+
+.header{
+  text-align: center;
+  font-size: 5rem;
+  color: cornflowerblue;
+  font-family: Cochin, 'Times New Roman', serif, serif;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.slider{
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.slider input{
+  width: calc(100% - 1rem);
+  color: cornflowerblue
+}
+
+.item-content-text{
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border: 3px solid rgb(195, 0, 255);
+  border-radius: 12px;
+  width: 100%;
+}
+
+
+.item{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.item-number{
+  font-size: 1.2rem;
+  font-weight: 700;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: rgb(195, 0, 255);
+  color: white;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
