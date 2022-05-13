@@ -26,6 +26,10 @@ function App() {
       <div className='header'>
         {value} Ideas
       </div>
+      <div className='buttons'>
+        <button onClick={()=>onChange(value+1)}>Download</button>
+        <button onClick={()=>onChange(value-1)}>Upload</button>
+      </div>
       <div className='container'>
           <div className='slider'>
             <input 
