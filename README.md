@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# 100 Ideas Generator
 
 > The project is a WIP
 
