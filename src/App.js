@@ -2,33 +2,51 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
+
 function Item(props) {
+  const [data, onChangeData]= props.data;
+  const id = props.id
+
+  let currentData = data[id];
+
+  const handleChange = (id, text) => {
+    let copiedData = {...data};
+    copiedData[id] = text;
+
+    onChangeData( changeData => ({
+        ...copiedData
+    }));
+  }
+
   return (
     <div className="item">
-      <div className="item-number">{props.id}</div>
+      <div className="item-number">{id}</div>
       <div className="item-content">
-        <textarea className="item-content-text"></textarea>
+        <textarea className="item-content-text" value={currentData}
+          onChange={({ target: { "value": currentData }}) => {
+            handleChange(id, currentData);
+          }}
+        >
+            
+        </textarea>
       </div>
     </div>
   );
 }
 
 function App() {
-  const [value,onChange]=useState(10);
+  const [count, onChangeCount]=useState(10);
+  const [data, onChangeData]=useState({});
 
   let items = [];
-  for (let i = 0; i < value; i++) {
-    items.push(<Item key={i} id={i+1}/>);
+  for (let i = 0; i < count; i++) {
+    items.push(<Item key={i} id={i+1} data={[data, onChangeData]}/>);
   }
 
   return (
     <div className="App">
       <div className='header'>
-        {value} Ideas
-      </div>
-      <div className='buttons'>
-        <button onClick={()=>onChange(value+1)}>Download</button>
-        <button onClick={()=>onChange(value-1)}>Upload</button>
+        {count} Ideas
       </div>
       <div className='container'>
           <div className='slider'>
@@ -36,10 +54,10 @@ function App() {
               type="range"
               min="1" 
               max="100"
-              value={value}
-              onChange={({ target: { value: radius } }) => {
-                                  onChange(radius);
-                                }}
+              value={count}
+              onChange={({ target: { "value": radius } }) => {
+                                  onChangeCount(radius);
+              }}
             />
           </div>
           <div className='content'>
