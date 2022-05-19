@@ -13,9 +13,34 @@
   font-weight: bolder;
 }
 
+.btnDiv{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-items: center; 
+  margin: 2rem 4rem;
+}
+
+.btnDiv button:hover{
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.btnDiv button{
+  width: 70%;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  height: 3rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+
+}
+
 .slider{
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   margin-left: 4rem;
   margin-right: 4rem;
 }
@@ -23,6 +48,10 @@
 .slider input{
   width: calc(100% - 1rem);
   color: cornflowerblue
+}
+
+.content {
+  margin-top: 2rem;
 }
 
 .item-content-text{

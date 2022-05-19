@@ -35,12 +35,28 @@ function Item(props) {
 }
 
 function App() {
+  
+
   const [count, onChangeCount]=useState(10);
   const [data, onChangeData]=useState({});
 
   let items = [];
   for (let i = 0; i < count; i++) {
     items.push(<Item key={i} id={i+1} data={[data, onChangeData]}/>);
+  }
+
+  const downloadTxtFile = () => {
+    console.log("clicked")
+    const element = document.createElement("a");
+    let texts = [];
+    Object.entries(data).forEach(([key, value]) => {
+      texts.push(`${key}. ${value}\n`);
+    });
+    const file = new Blob(texts, {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = "100ideas-" + Date.now() + ".txt";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
   }
 
   return (
@@ -59,6 +75,10 @@ function App() {
                                   onChangeCount(radius);
               }}
             />
+          </div>
+          <div className="btnDiv">
+            <button id="uploadBtn" value="upload">Upload</button>
+            <button id="downloadBtn" onClick={downloadTxtFile} value="download">Download</button>
           </div>
           <div className='content'>
             {items}
