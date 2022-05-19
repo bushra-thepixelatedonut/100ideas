@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
+
 
 
 function Item(props) {
@@ -39,6 +40,7 @@ function App() {
 
   const [count, onChangeCount]=useState(10);
   const [data, onChangeData]=useState({});
+  const fileInputRef=useRef();
 
   let items = [];
   for (let i = 0; i < count; i++) {
@@ -61,6 +63,37 @@ function App() {
     element.click();
   }
 
+  const uploadTxtFile = (event) => {
+    console.log("here...")
+    const file = event.target.files[0];
+    console.log(event.target.result)
+    const reader = new FileReader();
+    
+
+    reader.onload = (event) => {
+      let loadedData = {};
+      const text = event.target.result;
+      const lines = text.split("\n");
+      if (lines.length > count) {
+        if (!window.confirm("File has more lines than expected. Do you want to load the file anyway?")){
+          return;
+        }
+      }
+      
+      lines.forEach((line, index) => {
+        // upload entries only based on max count
+        if(index <= count) {
+          line = line.replace(/^\d*\.\s*/, '' )
+          loadedData[index+1] = line;
+        }
+      }); 
+      onChangeData({...loadedData});
+    } 
+
+    reader.readAsText(file);    
+    event.target.value = ''
+}
+
   return (
     <div className="App">
       <div className='header'>
@@ -79,7 +112,8 @@ function App() {
             />
           </div>
           <div className="btnDiv">
-            <button id="uploadBtn" value="upload">Upload</button>
+            <input type="file" accept="text/*" style={{ display: 'none' }} ref={fileInputRef} onChange={(e) => uploadTxtFile(e)} id="contained-button-file"/>
+            <button id="uploadBtn" onClick={()=> {fileInputRef.current.click()}} value="upload">Upload</button>
             <button id="downloadBtn" onClick={downloadTxtFile} value="download">Download</button>
           </div>
           <div className='content'>
