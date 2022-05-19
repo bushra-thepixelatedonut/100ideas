@@ -50,7 +50,9 @@ function App() {
     const element = document.createElement("a");
     let texts = [];
     Object.entries(data).forEach(([key, value]) => {
-      texts.push(`${key}. ${value}\n`);
+      if (key <= count) {
+        texts.push(`${key}. ${value}\n`);
+      }
     });
     const file = new Blob(texts, {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
