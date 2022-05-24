@@ -40,6 +40,7 @@ function App() {
   const [count, onChangeCount]=useState(100);
   const [data, onChangeData]=useState({});
   const fileInputRef=useRef();
+  const footerContent = "Made by "
 
   let items = [];
   for (let i = 0; i < count; i++) {
@@ -96,11 +97,12 @@ function App() {
     <div className="App">
       <div className='header'>
         {count} Ideas
+        <div className='subheader'>
+          Want an editor to brainstrom 100 Ideas? <br/>
+          Here you go!
+        </div>
       </div>
-      <div className='subheader'>
-        Want an editor to brainstrom 100 Ideas? <br/>
-        Here you go!
-      </div>
+      
       <div className='container'>
           <div className='slider'>
             <input 
@@ -122,6 +124,10 @@ function App() {
             {items}
           </div>
       </div>
+      <footer className='footer'>
+          {footerContent}
+          <a href="https://bhavaniravi.com" target="_blank">Bhavani Ravi</a>
+      </footer>
     </div>
   );
 }
