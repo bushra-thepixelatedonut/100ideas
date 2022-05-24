@@ -37,7 +37,7 @@ function Item(props) {
 function App() {
   
 
-  const [count, onChangeCount]=useState(10);
+  const [count, onChangeCount]=useState(100);
   const [data, onChangeData]=useState({});
   const fileInputRef=useRef();
 
@@ -47,7 +47,6 @@ function App() {
   }
 
   const downloadTxtFile = () => {
-    console.log("clicked")
     const element = document.createElement("a");
     let texts = [];
     Object.entries(data).forEach(([key, value]) => {
@@ -74,7 +73,7 @@ function App() {
       const text = event.target.result;
       const lines = text.split("\n");
       if (lines.length > count) {
-        if (!window.confirm("File has more lines than expected. Do you want to load the file anyway?")){
+        if (!window.confirm("File has more lines than expected. Extra lines will be dropped. Do you want to load the file anyway?")){
           return;
         }
       }
@@ -97,6 +96,10 @@ function App() {
     <div className="App">
       <div className='header'>
         {count} Ideas
+      </div>
+      <div className='subheader'>
+        Want an editor to brainstrom 100 Ideas? <br/>
+        Here you go!
       </div>
       <div className='container'>
           <div className='slider'>
