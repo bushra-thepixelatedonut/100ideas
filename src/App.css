@@ -69,6 +69,7 @@
   border: 3px solid #d0a2df;
   border-radius: 12px;
   width: 100%;
+  resize: vertical;
 }
 
 
