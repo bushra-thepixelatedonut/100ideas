@@ -1,23 +1,53 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scroll-bar-bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(198, 198, 198);
+  border-radius: 20px;
+  border: 1px thin var(--scroll-bar-bg-color);
+}
+
 .App {
   max-width: 600px;
-  margin: 4rem auto;
-  padding: 1rem
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  /* padding: 1rem; */
+  /* display: grid;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;  */
+
 }
+
 
 .header{
   text-align: center;
   font-size: 5rem;
   color: cornflowerblue;
-  font-family: Cochin, 'Times New Roman', serif, serif;
+  font-family: Cochin, 'Times New Roman', serif;
   font-style: italic;
   font-weight: bolder;
 }
 
 .subheader{
+  
   text-align: center;
   font-size: 1.4rem;
   color: cornflowerblue;
-  font-family: Cochin, 'Times New Roman', serif, serif;
+  font-family: Cochin, 'Times New Roman', serif;
   font-style: italic;
   font-weight: bolder;
 }
@@ -33,7 +63,7 @@
 
 .btnDiv button:hover{
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .btnDiv button{
@@ -41,7 +71,8 @@
   background-color: cornflowerblue;
   color: white;
   border: none;
-  height: 3rem;
+  height: fit-content;
+  padding: 1rem 1rem;
   font-weight: 600;
   border-radius: 0.5rem;
 
@@ -61,6 +92,7 @@
 
 .content {
   margin-top: 2rem;
+  padding-right: 2rem;
 }
 
 .item-content-text{
@@ -92,4 +124,33 @@
   align-items: center;
   justify-content: center;
   align-self: center;
+}
+
+/* .footer{
+    text-align: "center";
+    bottom: "0"; 
+    position: sticky;
+    top: 100vh;
+    text-align: center;
+    background-color: #6495ed;
+    color: white;
+    height: fit-content;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+} */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  background-color: #6495ed;
+  color: white;
+  text-align: center;
+  max-width:inherit;
+}
+
+.footer a{
+  text-decoration: none;
+  color: rgb(224, 252, 255);
 }
