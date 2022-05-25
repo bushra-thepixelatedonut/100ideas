@@ -38,7 +38,7 @@ function Item(props) {
 function App() {
   
 
-  const [count, onChangeCount]=useState(1);
+  const [count, onChangeCount]=useState(100);
   const [data, onChangeData]=useState({});
   const fileInputRef=useRef();
   const footerContent = "Made by "
