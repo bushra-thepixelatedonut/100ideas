@@ -4,8 +4,9 @@
 
 Open a text editor. Come up with 100 ideas for your project. Somewhere down the line there will be a 36 which you would want in place of 33. Now you have to go back and renumber everything.
 
-Yeah. Yeah. We all can use a Google Doc but Nope. I'm a developer. I build things for fun of it.
+Yeah. Yeah. We all can use a Google Doc's numbered list but any time I want to expand an idea to multiple lines it doesn't flow. 
 
+Also, I'm a developer. I build things for fun of it.
 So here we go. A simple UI that let's you add and remove n items and download them into a text file.
 
 ## Available Scripts
