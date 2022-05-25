@@ -90,6 +90,10 @@
   color: #6495ed
 }
 
+.container{
+  margin-bottom: 10rem;
+}
+
 .content {
   margin-top: 2rem;
   padding-right: 2rem;
@@ -126,31 +130,20 @@
   align-self: center;
 }
 
-/* .footer{
-    text-align: "center";
-    bottom: "0"; 
-    position: sticky;
-    top: 100vh;
-    text-align: center;
-    background-color: #6495ed;
-    color: white;
-    height: fit-content;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-} */
-
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   padding: 0.5rem 0rem 0.5rem 0rem;
-  background-color: #6495ed;
-  color: white;
+  background-color: #dfeaff;
+  color: #6495ed;
   text-align: center;
   max-width:inherit;
+  font-size:12px;
 }
 
 .footer a{
   text-decoration: none;
-  color: rgb(224, 252, 255);
+  color: #6495ed;
+  font-weight: 800;
 }

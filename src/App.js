@@ -6,8 +6,7 @@ import {useState, useRef} from 'react';
 function Item(props) {
   const [data, onChangeData]= props.data;
   const id = props.id
-
-  let currentData = data[id];
+  const [currentData, onChangeText]= useState(data[id]);
 
   const handleChange = (id, text) => {
     let copiedData = {...data};
@@ -16,16 +15,18 @@ function Item(props) {
     onChangeData( changeData => ({
         ...copiedData
     }));
+    onChangeText(text);
   }
-
   return (
     <div className="item">
       <div className="item-number">{id}</div>
       <div className="item-content">
         <textarea className="item-content-text" value={currentData}
+          rows={currentData && currentData.split("\n").length > 2 ? currentData.split("\n").length : 2}
           onChange={({ target: { "value": currentData }}) => {
             handleChange(id, currentData);
           }}
+          style={{"height": "fit-content"}}
         >
             
         </textarea>
@@ -37,7 +38,7 @@ function Item(props) {
 function App() {
   
 
-  const [count, onChangeCount]=useState(100);
+  const [count, onChangeCount]=useState(1);
   const [data, onChangeData]=useState({});
   const fileInputRef=useRef();
   const footerContent = "Made by "
@@ -63,9 +64,7 @@ function App() {
   }
 
   const uploadTxtFile = (event) => {
-    console.log("here...")
     const file = event.target.files[0];
-    console.log(event.target.result)
     const reader = new FileReader();
     
 
@@ -73,20 +72,20 @@ function App() {
       let loadedData = {};
       const text = event.target.result;
       const lines = text.split("\n");
-      if (lines.length > count) {
-        if (!window.confirm("File has more lines than expected. Extra lines will be dropped. Do you want to load the file anyway?")){
+      if (lines.length > 100) {
+        if (!window.confirm("File has more than 100 lines. Extra lines will be dropped. Do you want to load the file anyway?")){
           return;
         }
       }
-      
       lines.forEach((line, index) => {
         // upload entries only based on max count
-        if(index <= count) {
+        if(index <= 100) {
           line = line.replace(/^\d*\.\s*/, '' )
           loadedData[index+1] = line;
         }
       }); 
       onChangeData({...loadedData});
+      onChangeCount(lines.length);
     } 
 
     reader.readAsText(file);    
@@ -115,18 +114,21 @@ function App() {
               }}
             />
           </div>
-          <div className="btnDiv">
-            <input type="file" accept="text/*" style={{ display: 'none' }} ref={fileInputRef} onChange={(e) => uploadTxtFile(e)} id="contained-button-file"/>
-            <button id="uploadBtn" onClick={()=> {fileInputRef.current.click()}} value="upload">Upload</button>
-            <button id="downloadBtn" onClick={downloadTxtFile} value="download">Download</button>
-          </div>
+
           <div className='content'>
             {items}
           </div>
       </div>
       <footer className='footer'>
+          <div className="btnDiv">
+            <input type="file" accept="text/*" style={{ display: 'none' }} ref={fileInputRef} onChange={(e) => uploadTxtFile(e)} id="contained-button-file"/>
+            <button id="uploadBtn" onClick={()=> {fileInputRef.current.click()}} value="upload">Upload</button>
+            <button id="downloadBtn" onClick={downloadTxtFile} value="download">Download</button>
+          </div>
+          <div className="footeContent">
           {footerContent}
           <a href="https://bhavaniravi.com" target="_blank">Bhavani Ravi</a>
+          </div>      
       </footer>
     </div>
   );
