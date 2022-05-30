@@ -6,7 +6,7 @@ import {useState, useRef} from 'react';
 function Item(props) {
   const [data, onChangeData]= props.data;
   const id = props.id
-  const [currentData, onChangeText]= useState(data[id]);
+  const [currText, onChangeText]= useState(data[id]);
 
   const handleChange = (id, text) => {
     let copiedData = {...data};
@@ -21,8 +21,8 @@ function Item(props) {
     <div className="item">
       <div className="item-number">{id}</div>
       <div className="item-content">
-        <textarea className="item-content-text" value={currentData}
-          rows={currentData && currentData.split("\n").length > 2 ? currentData.split("\n").length : 2}
+        <textarea className="item-content-text" value={currText}
+          rows={currText && currText.split("\n").length > 2 ? currText.split("\n").length : 2}
           onChange={({ target: { "value": currentData }}) => {
             handleChange(id, currentData);
           }}
@@ -52,7 +52,8 @@ function App() {
     const element = document.createElement("a");
     let texts = [];
     Object.entries(data).forEach(([key, value]) => {
-      if (key <= count) {
+      if (Number(key) <= count) {
+        
         texts.push(`${key}. ${value}\n`);
       }
     });
@@ -127,7 +128,7 @@ function App() {
           </div>
           <div className="footeContent">
           {footerContent}
-          <a href="https://bhavaniravi.com" target="_blank">Bhavani Ravi</a>
+          <a rel="noreferrer" href="https://bhavaniravi.com" target="_blank">Bhavani Ravi</a>
           </div>      
       </footer>
     </div>
